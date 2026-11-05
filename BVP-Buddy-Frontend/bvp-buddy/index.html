@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#102b50" />
+  <meta name="description" content="BVP Buddy — a focused study companion for first-year engineering students." />
+  <title>BVP Buddy | Your engineering study companion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#dashboard" aria-label="BVP Buddy home">
+        <img src="assets/bvp-logo.png" alt="Bharati Vidyapeeth logo" class="brand-logo" />
+        <span><strong>BVP Buddy</strong><small>FIRST YEAR • ENGINEERING</small></span>
+      </a>
+      <div class="nav-caption">YOUR WORKSPACE</div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-link active" data-page="dashboard"><span class="nav-icon">⌂</span>Overview</button>
+        <button class="nav-link" data-page="tutor"><span class="nav-icon">✳</span>AI study room</button>
+        <button class="nav-link" data-page="syllabus"><span class="nav-icon">▤</span>My syllabus</button>
+        <button class="nav-link" data-page="videos"><span class="nav-icon">▷</span>Video lectures</button>
+        <button class="nav-link" data-page="resources"><span class="nav-icon">↗</span>Study resources</button>
+        <button class="nav-link" data-page="practice"><span class="nav-icon">⌘</span>Coding practice</button>
+        <button class="nav-link" data-page="planner"><span class="nav-icon">▦</span>Study planner</button>
+        <button class="nav-link" data-page="bookmarks"><span class="nav-icon">☆</span>Saved items</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-note">
+          <span class="note-mark">✦</span>
+          <div><strong>Small steps count.</strong><p>Keep your learning consistent, one topic at a time.</p></div>
+        </div>
+        <button class="nav-link" data-page="settings"><span class="nav-icon">⚙</span>Settings</button>
+        <div class="profile-row">
+          <div class="avatar">S</div>
+          <div class="profile-copy"><strong id="profileName">Student</strong><small>First-year learner</small></div>
+          <button class="icon-button" id="editNameBtn" title="Edit your name" aria-label="Edit name">✎</button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" id="menuBtn" aria-label="Open navigation">☰</button>
+        <div class="breadcrumb"><span>Workspace</span><b>/</b><strong id="pageCrumb">Overview</strong></div>
+        <div class="top-actions">
+          <div class="today-label" id="todayLabel"></div>
+          <button class="icon-button theme-toggle" id="themeBtn" title="Toggle theme" aria-label="Toggle theme">☾</button>
+          <button class="top-avatar" id="topAvatar" aria-label="Profile">S</button>
+        </div>
+      </header>
+
+      <div class="content-wrap">
+        <section class="page active" id="page-dashboard">
+          <div class="welcome-row">
+            <div><p class="eyebrow">YOUR STUDY SPACE</p><h1>Good to see you, <span id="welcomeName">Student</span>.</h1><p class="muted">A clear plan makes a busy semester easier. What would you like to work on?</p></div>
+            <button class="button button-primary" data-go="tutor"> <span>✳</span> Ask the AI tutor</button>
+          </div>
+          <div class="stats-grid">
+            <article class="stat-card"><div class="stat-top"><span>Topics completed</span><span class="stat-icon blue">✓</span></div><strong id="completedCount">0</strong><small>Across all subjects</small></article>
+            <article class="stat-card"><div class="stat-top"><span>Study tasks</span><span class="stat-icon gold">▦</span></div><strong id="taskCount">0</strong><small>Pending in your planner</small></article>
+            <article class="stat-card"><div class="stat-top"><span>Saved resources</span><span class="stat-icon green">☆</span></div><strong id="savedCount">0</strong><small>For quick access later</small></article>
+            <article class="stat-card"><div class="stat-top"><span>Study streak</span><span class="stat-icon violet">↗</span></div><strong id="streakCount">1 day</strong><small>Keep showing up</small></article>
+          </div>
+          <div class="dashboard-grid">
+            <section class="panel subject-panel">
+              <div class="section-heading"><div><p class="eyebrow">KEEP MOVING</p><h2>Your subjects</h2></div><button class="text-button" data-go="syllabus">View syllabus <span>→</span></button></div>
+              <div id="subjectOverview" class="subject-list"></div>
+            </section>
+            <section class="panel focus-panel">
+              <div class="section-heading"><div><p class="eyebrow">MAKE IT COUNT</p><h2>Today's focus</h2></div><span class="date-chip" id="focusDate"></span></div>
+              <div id="todayTasks" class="today-tasks"></div>
+              <button class="button button-outline full-width" data-go="planner">Open study planner</button>
+            </section>
+          </div>
+          <section class="panel quick-panel">
+            <div class="section-heading"><div><p class="eyebrow">PICK UP WHERE YOU LEFT OFF</p><h2>Quick access</h2></div></div>
+            <div class="quick-grid">
+              <button class="quick-item" data-go="tutor"><span class="quick-icon">✳</span><span><strong>Clear a doubt</strong><small>Ask a concept or numerical</small></span><b>→</b></button>
+              <button class="quick-item" data-go="videos"><span class="quick-icon">▷</span><span><strong>Watch a lecture</strong><small>Curated subject channels</small></span><b>→</b></button>
+              <button class="quick-item" data-go="practice"><span class="quick-icon">⌘</span><span><strong>Practice coding</strong><small>Build problem-solving skills</small></span><b>→</b></button>
+              <button class="quick-item" data-go="resources"><span class="quick-icon">▤</span><span><strong>Find a reference</strong><small>Books, docs and courses</small></span><b>→</b></button>
+            </div>
+          </section>
+        </section>
+
+        <section class="page" id="page-tutor">
+          <div class="page-heading"><div><p class="eyebrow">LEARN IT YOUR WAY</p><h1>AI study room</h1><p class="muted">Ask questions, work through problems and understand the reasoning.</p></div><button class="button button-outline" id="clearChatBtn">New conversation</button></div>
+          <div class="tutor-layout">
+            <aside class="panel tutor-tools"><h3>How should I explain?</h3><p class="muted small">Choose a style before sending your question.</p>
+              <div class="mode-list" id="modeList">
+                <button class="mode-option selected" data-mode="Beginner friendly"><span>◉</span><span><strong>Start from basics</strong><small>Simple, clear explanation</small></span></button>
+                <button class="mode-option" data-mode="Detailed engineering answer"><span>▤</span><span><strong>Detailed explanation</strong><small>Step-by-step concepts</small></span></button>
+                <button class="mode-option" data-mode="Exam-oriented answer"><span>✎</span><span><strong>Exam preparation</strong><small>Structured answer format</small></span></button>
+                <button class="mode-option" data-mode="Numerical problem solver"><span>∑</span><span><strong>Solve a numerical</strong><small>Show each calculation</small></span></button>
+                <button class="mode-option" data-mode="Code explanation"><span>&lt;/&gt;</span><span><strong>Explain code</strong><small>Logic and dry run</small></span></button>
+              </div>
+              <div class="tutor-tip"><strong>Study tip</strong><p>Share what you have tried so far. It helps the tutor explain the part that feels confusing.</p></div>
+            </aside>
+            <section class="panel chat-panel">
+              <div class="chat-header"><div class="tutor-avatar">✳</div><div><strong>BVP Buddy Tutor</strong><small><span class="online-dot"></span> Ready to help</small></div><span class="chat-subject" id="chatModeLabel">Beginner friendly</span></div>
+              <div class="chat-messages" id="chatMessages">
+                <div class="message assistant"><div class="message-avatar">B</div><div class="message-body"><span class="message-label">BVP BUDDY</span><p>Hi! Bring me a topic, a question from your notes, or a problem you are stuck on. We'll work through it together.</p><small>Try asking: “Explain Kirchhoff's laws with an example.”</small></div></div>
+              </div>
+              <div class="prompt-chips"><button data-prompt="Explain the topic in simple language with an example.">Explain simply</button><button data-prompt="Give me 5 exam-style questions on this topic with answers.">Practice questions</button><button data-prompt="Summarise this topic into revision notes.">Make revision notes</button></div>
+              <form class="chat-form" id="chatForm"><textarea id="chatInput" rows="2" placeholder="Ask your doubt here..." aria-label="Your question"></textarea><button class="send-button" type="submit" aria-label="Send question">↑</button><div class="chat-footnote">AI can make mistakes. Verify important academic answers with your textbook or faculty.</div></form>
+            </section>
+          </div>
+        </section>
+
+        <section class="page" id="page-syllabus">
+          <div class="page-heading"><div><p class="eyebrow">FIRST SEMESTER</p><h1>My syllabus</h1><p class="muted">Work through topics at your own pace. Tick a topic when you have revised it.</p></div><div class="progress-summary"><strong id="syllabusPercent">0%</strong><span>overall complete</span></div></div>
+          <div class="notice"><span>i</span><p><strong>Syllabus note:</strong> This starter syllabus is a broad first-year engineering outline. Check your current BVDU course scheme and faculty notes before treating it as the official examination syllabus.</p></div>
+          <div id="syllabusSubjects" class="syllabus-grid"></div>
+        </section>
+
+        <section class="page" id="page-videos">
+          <div class="page-heading"><div><p class="eyebrow">LEARN FROM THE CLASSROOM</p><h1>Video lectures</h1><p class="muted">Your preferred channels, grouped by subject for easier study.</p></div></div>
+          <div class="filter-row" id="videoFilters"><button class="filter-chip active" data-filter="all">All subjects</button><button class="filter-chip" data-filter="maths">Mathematics</button><button class="filter-chip" data-filter="chemistry">Chemistry</button><button class="filter-chip" data-filter="digital">Digital electronics</button><button class="filter-chip" data-filter="programming">Programming</button><button class="filter-chip" data-filter="communication">Communication</button><button class="filter-chip" data-filter="web">Web technology</button></div>
+          <div class="resource-grid" id="videoGrid"></div>
+        </section>
+
+        <section class="page" id="page-resources">
+          <div class="page-heading"><div><p class="eyebrow">TRUSTED PLACES TO LEARN</p><h1>Study resources</h1><p class="muted">Reference books, documentation, courses and learning platforms.</p></div></div>
+          <div class="resource-tabs" id="resourceTabs"><button class="tab-button active" data-tab="books">Books</button><button class="tab-button" data-tab="learning">Learning platforms</button><button class="tab-button" data-tab="documentation">Documentation</button><button class="tab-button" data-tab="courses">Free courses</button></div>
+          <div class="resource-grid" id="resourceGrid"></div>
+        </section>
+
+        <section class="page" id="page-practice">
+          <div class="page-heading"><div><p class="eyebrow">BUILD YOUR SKILLS</p><h1>Coding practice</h1><p class="muted">Practice problem-solving and use reliable references while learning to code.</p></div></div>
+          <div class="practice-banner"><div><span class="eyebrow light">A GOOD ROUTINE</span><h2>Read a concept. Write code. Test it. Repeat.</h2><p>Start with fundamentals, then gradually increase the difficulty.</p></div><span class="banner-symbol">&lt;/&gt;</span></div>
+          <div class="resource-grid" id="practiceGrid"></div>
+        </section>
+
+        <section class="page" id="page-planner">
+          <div class="page-heading"><div><p class="eyebrow">MAKE TIME FOR LEARNING</p><h1>Study planner</h1><p class="muted">Add small, realistic tasks and mark them complete as you go.</p></div></div>
+          <section class="panel planner-panel">
+            <form id="taskForm" class="task-form"><label class="field"><span>What do you want to study?</span><input id="taskTitle" required maxlength="90" placeholder="e.g. Revise matrices and determinants"></label><label class="field"><span>Subject</span><select id="taskSubject"><option>Mathematics</option><option>Engineering Chemistry</option><option>Digital Electronics</option><option>Structured Programming</option><option>Communication Skills</option><option>Web Technology</option><option>General</option></select></label><label class="field date-field"><span>Due date</span><input type="date" id="taskDate" required></label><button class="button button-primary" type="submit">+ Add task</button></form>
+              <div class="planner-toolbar"><div class="segmented" id="taskFilters"><button class="active" data-status="all">All</button><button data-status="pending">To do</button><button data-status="done">Completed</button></div><span class="muted small" id="plannerCount"></span></div>
+              <div id="taskList" class="task-list"></div>
+          </section>
+        </section>
+
+        <section class="page" id="page-bookmarks">
+          <div class="page-heading"><div><p class="eyebrow">YOUR PERSONAL LIBRARY</p><h1>Saved items</h1><p class="muted">The books, platforms and lectures you want to come back to.</p></div></div>
+          <div class="resource-grid" id="bookmarkGrid"></div>
+          <div class="empty-state hidden" id="bookmarkEmpty"><span>☆</span><h3>No saved items yet</h3><p>Use the bookmark icon on a resource to keep it here.</p><button class="button button-outline" data-go="resources">Explore resources</button></div>
+        </section>
+
+        <section class="page" id="page-settings">
+          <div class="page-heading"><div><p class="eyebrow">MAKE IT YOURS</p><h1>Settings</h1><p class="muted">Manage your study preferences and AI tutor connection.</p></div></div>
+          <div class="settings-grid">
+            <section class="panel settings-panel"><h2>Profile</h2><p class="muted small">This name is stored in this browser only.</p><label class="field"><span>Your display name</span><input id="settingsName" maxlength="35" placeholder="Your name"></label><button class="button button-primary" id="saveNameBtn">Save name</button></section>
+            <section class="panel settings-panel"><h2>AI tutor connection</h2><p class="muted small">Connect your own OpenRouter key to enable live AI answers. The key is kept in session storage and cleared when this browser session ends.</p><label class="field"><span>OpenRouter API key</span><input id="apiKeyInput" type="password" autocomplete="off" placeholder="sk-or-..."></label><label class="field"><span>Model</span><input id="modelInput" value="openrouter/auto" placeholder="openrouter/auto"></label><div class="settings-actions"><button class="button button-primary" id="saveApiBtn">Save for this session</button><button class="button button-outline" id="clearApiBtn">Clear key</button></div><p class="security-note">Security: a frontend-only app cannot keep an API key secret while making direct browser requests. Use a backend proxy before publishing this site. Never commit a real key to GitHub.</p></section>
+            <section class="panel settings-panel"><h2>Appearance</h2><p class="muted small">Choose the interface that feels comfortable.</p><div class="appearance-row"><span><strong>Dark mode</strong><small>Switch between light and dark themes.</small></span><button class="switch" id="settingsThemeBtn" aria-label="Toggle dark mode"><span></span></button></div></section>
+            <section class="panel settings-panel"><h2>Your study data</h2><p class="muted small">Your syllabus progress, saved items and planner tasks are stored locally in this browser.</p><button class="button button-danger-outline" id="resetDataBtn">Reset local study data</button></section>
+          </div>
+        </section>
+        <footer class="app-footer"><span>BVP Buddy</span><span>Made for focused learning • Verify your official syllabus with your college.</span></footer>
+      </div>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal-backdrop hidden" id="confirmModal"><div class="modal"><h3>Reset your study data?</h3><p>This clears saved resources, topic progress and planner tasks from this browser. This cannot be undone.</p><div class="modal-actions"><button class="button button-outline" id="cancelReset">Cancel</button><button class="button button-danger" id="confirmReset">Reset data</button></div></div></div>
+  <script src="app.js"></script>
+</body>
+</html>

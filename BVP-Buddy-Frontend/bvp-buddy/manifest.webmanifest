@@ -1,0 +1,9 @@
+{
+  "name": "BVP Buddy",
+  "short_name": "BVP Buddy",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f5f7fa",
+  "theme_color": "#102b50",
+  "description": "A focused first-year engineering study companion."
+}
